@@ -40,46 +40,40 @@ function Arrow([int[]]$coords) {
     $taskGraphics.DrawLine($taskLine,$coords[$n-4],$coords[$n-3],$coords[$n-2],$coords[$n-1])
 }
 $taskGraphics.DrawString('Drill #11 | 소년 상태 다이어그램', $taskTitleFont, $taskInk, 55, 25)
-$taskGraphics.DrawString('AutoRun 요구사항 · 별도 파일: states/auto_run.py', $taskHeadingFont, $taskInk, 55, 95)
-Box 'IDLE' 'A 입력 대기 / 진입 시 타이머 초기화' 70 245
-Box 'AutoRun' '800 px/s · 1.5배 · 자동 이동' 630 245 340 110 $true
-Box 'RUN' '500 px/s · 원래 크기' 1210 245
-Arrow @(390,275,630,275)
-Label 'A 누름' 410 225 195
-Arrow @(970,275,1210,275)
-Label '← / → 누름' 990 213 195
-Label 'Shift 없이 해당 방향 RUN' 975 285 235 65
-Arrow @(700,355,700,410,230,410,230,355)
-Label '5초 경과 → IDLE / 크기 복구' 245 365 435
-Arrow @(970,330,1080,330,1080,465,800,465,800,355)
-Label '좌우 경계 → 방향 반전' 770 477 370
-Label '(AutoRun 상태 유지)' 790 510 330
-Arrow @(1370,245,1370,180,240,180,240,245)
-Label '방향키 이동 중지 → IDLE' 630 135 395
-$taskGraphics.DrawLine($taskBorder,55,575,1545,575)
-$taskGraphics.DrawString('기존 상태 전이 (위와 동일한 IDLE / RUN)', $taskHeadingFont, $taskInk, 55, 595)
-Box 'IDLE' '5초 대기 → SLEEP' 70 740 270
-Box 'WALK' '200 px/s' 460 740 270
-Box 'RUN' '500 px/s' 850 740 270
-Box 'SLEEP' '방향에 맞춰 눕기 / 기상' 1240 740 290
-Arrow @(340,770,460,770)
-Label '방향키' 340 721 120
-Arrow @(730,770,850,770)
-Label 'Shift 누름' 730 721 120
-Arrow @(850,825,730,825)
-Label 'Shift 해제' 730 845 120
-Arrow @(595,850,595,920,200,920,200,850)
-Label '이동 중지 → IDLE (WALK / RUN)' 220 929 490
-Arrow @(985,850,985,920,595,920)
-Arrow @(205,740,205,690,985,690,985,740)
-Label 'Shift + 방향키 → RUN' 480 645 350
-Arrow @(290,850,290,1005,1385,1005,1385,850)
-Label 'IDLE 5초 → SLEEP' 400 1006 320
-Arrow @(1290,740,1290,650,300,650,300,740)
-Label 'Space → 기상 완료 → IDLE' 890 605 390
-Arrow @(1450,850,1450,965,650,965,650,850)
-Label '방향키 → 즉시 WALK (회전 중에도 적용)' 850 966 570
-$taskGraphics.DrawString('입력 기준: ←/→ 이동 · Shift 달리기 · A 자동 무적 런 · Space 기상 · Esc 종료', $taskSmallFont, $taskInk, 65, 1080)
+$taskGraphics.DrawString('IDLE ↔ AutoRun ↔ RUN ↔ IDLE · SLEEP 제거', $taskHeadingFont, $taskInk, 55, 95)
+Box 'IDLE' '계속 서서 대기 / A 입력 가능' 90 280 330 120
+Box 'AutoRun' '800 px/s · 1.5배 · 최대 5초' 630 280 340 120 $true
+Box 'RUN' '500 px/s · 원래 크기' 1210 280 300 120
+Arrow @(420,310,630,310)
+Label 'A 누름' 430 260 185
+Arrow @(630,375,420,375)
+Label '5초 경과 / 크기 복구' 400 410 290
+Arrow @(970,310,1210,310)
+Label '← / → 누름' 990 240 195
+Label '(Shift 불필요)' 995 275 190
+Arrow @(1210,375,970,375)
+Label 'A 누름' 995 410 180
+Arrow @(250,280,250,210,1360,210,1360,280)
+Label 'Shift + 방향키 → RUN' 610 160 395
+Arrow @(1380,400,1380,530,250,530,250,400)
+Label '방향키 이동 중지 → IDLE' 610 540 395
+Arrow @(800,400,800,470,1100,470,1100,335,970,335)
+Label '좌우 경계 → 방향 반전 (AutoRun 유지)' 830 480 490
+$taskGraphics.DrawLine($taskBorder,55,625,1545,625)
+$taskGraphics.DrawString('기존 WALK 유지 (위와 동일한 IDLE / RUN)', $taskHeadingFont, $taskInk, 55, 650)
+Box 'IDLE' '일반 대기' 90 810 330
+Box 'WALK' '200 px/s' 630 810 340
+Box 'RUN' '500 px/s' 1210 810 300
+Arrow @(420,840,630,840)
+Label '방향키' 440 785 170
+Arrow @(630,900,420,900)
+Label '이동 중지' 440 920 170
+Arrow @(970,840,1210,840)
+Label 'Shift 누름' 995 785 195
+Arrow @(1210,900,970,900)
+Label 'Shift 해제' 995 920 195
+$taskGraphics.DrawString('상태 전이 조건: 좌우 동시 입력은 이동 중지로 처리. IDLE은 시간이 지나도 눕지 않는다.', $taskFont, $taskInk, 65, 1020)
+$taskGraphics.DrawString('입력: ←/→ 이동 · Shift 달리기 · A 자동 무적 런 (IDLE/RUN) · Esc 종료', $taskSmallFont, $taskInk, 65, 1080)
 $taskBitmap.Save($taskOutput,[System.Drawing.Imaging.ImageFormat]::Png)
 $taskGraphics.Dispose()
 $taskBitmap.Dispose()

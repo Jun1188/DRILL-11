@@ -1,5 +1,5 @@
 ﻿from pico2d import SDL_KEYDOWN, SDLK_a
-from config import IDLE_FPS, IDLE_SLEEP_DELAY
+from config import IDLE_FPS
 from states.base import State
 
 
@@ -8,7 +8,6 @@ class Idle(State):
 
     def enter(self, boy):
         super().enter(boy)
-        boy.elapsed = 0.0
         boy.direction = 0
 
     def handle_event(self, boy, event, movement_changed):
@@ -19,6 +18,3 @@ class Idle(State):
 
     def update(self, boy, dt):
         boy.animate(IDLE_FPS, dt)
-        boy.elapsed += dt
-        if boy.elapsed >= IDLE_SLEEP_DELAY:
-            boy.change_state('SLEEP')

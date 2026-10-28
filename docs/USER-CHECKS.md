@@ -22,15 +22,16 @@
 | [ ] | AutoRun 종료 후 A로 다시 진입 | 새 5초 타이머로 출발 |
 | [ ] | docs/state-diagram.png 열기 | 모든 전이와 별도 AutoRun 클래스 표시 |
 
+## 추가 변경 확인
+- [ ] Idle에서 5초 이상 기다려도 서 있으며 A가 계속 동작한다.
+- [ ] Shift + 방향키로 Run 중 A를 누르면 AutoRun으로 전환한다.
+- [ ] AutoRun 방향키 → Run → 이동키 해제 → Idle → A → AutoRun 경로를 확인한다.
+- [ ] Idle → Run, Run → Idle, Run → AutoRun, AutoRun → Run, AutoRun → Idle, Idle → AutoRun을 각각 확인한다.
+
 ## 기존 기능 및 경계 상황
 - [ ] 좌우 Walk, Shift + 방향키 Run, Shift 해제 Walk.
 - [ ] 좌우를 동시에 누르면 정지, 한쪽을 놓으면 남은 방향으로 이동.
 - [ ] 양쪽 Shift를 누르고 한쪽만 놓아도 나머지 Shift 유지.
-- [ ] Idle 5초 뒤 보는 방향으로 눕기. Space 후 기상 완료 시 Idle.
-- [ ] 왼쪽과 오른쪽 모두 Sleep의 발/몸체가 지면과 맞는지 확인.
-- [ ] 눕기 도중, 수면 중, 기상 중 각각 방향키로 즉시 Walk.
-- [ ] Sleep에서 깨어난 뒤 새로 5초가 지나야 다시 Sleep.
-- [ ] AutoRun이 끝난 뒤 새로 5초가 지나야 Sleep.
 - [ ] AutoRun 확대 중 발 높이와 양끝 반전 위치를 시각적으로 확인.
 - [ ] Esc와 창 닫기로 정상 종료.
 

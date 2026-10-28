@@ -1,5 +1,4 @@
-﻿from math import sin, cos
-from pathlib import Path
+﻿from pathlib import Path
 from pico2d import load_image
 from config import FRAME_SIZE
 
@@ -11,16 +10,7 @@ class BoyRenderer:
         self.run_image = load_image(str(assets / 'run_animation.png'))
 
     def draw(self, boy):
-        if boy.state.name == 'SLEEP':
-            row = 300 if boy.face_dir == 1 else 200
-            side_extent = 16 if boy.face_dir == 1 else 14
-            # Retain the prior lesson's opaque-sprite ground correction.
-            ground_y = boy.y - 36
-            draw_y = ground_y + 36 * cos(boy.sleep_angle) + side_extent * sin(boy.sleep_angle)
-            self.idle_image.clip_composite_draw(
-                0, row, FRAME_SIZE, FRAME_SIZE, -boy.face_dir * boy.sleep_angle,
-                '', boy.x, draw_y, FRAME_SIZE, FRAME_SIZE)
-        elif boy.state.name == 'IDLE':
+        if boy.state.name == 'IDLE':
             row = 300 if boy.face_dir == 1 else 200
             self.idle_image.clip_draw(int(boy.frame) * FRAME_SIZE, row,
                                       FRAME_SIZE, FRAME_SIZE, boy.x, boy.y)

@@ -4,7 +4,6 @@ from renderer import BoyRenderer
 from states.idle import Idle
 from states.walk import Walk
 from states.run import Run
-from states.sleep import Sleep
 from states.auto_run import AutoRun
 
 
@@ -16,11 +15,9 @@ class Boy:
         self.face_dir = 1
         self.direction = 0
         self.scale = 1.0
-        self.sleep_angle = 0.0
-        self.waking_up = False
         self.keys = InputState()
         self.renderer = BoyRenderer()
-        self.states = {state.name: state for state in (Idle(), Walk(), Run(), Sleep(), AutoRun())}
+        self.states = {state.name: state for state in (Idle(), Walk(), Run(), AutoRun())}
         self.state = self.states['IDLE']
         self.state.enter(self)
 

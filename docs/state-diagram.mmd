@@ -2,23 +2,22 @@
     [*] --> IDLE
     IDLE --> AUTO_RUN: A key down
     AUTO_RUN --> IDLE: elapsed >= 5 seconds / restore scale
+    RUN --> AUTO_RUN: A key down
     AUTO_RUN --> RUN: Left or Right key down / force pressed direction
+    IDLE --> RUN: Shift + arrow
+    RUN --> IDLE: no net arrow direction
     AUTO_RUN --> AUTO_RUN: screen edge / reverse direction
     IDLE --> WALK: arrow without Shift
-    IDLE --> RUN: Shift + arrow
     WALK --> RUN: Shift down with arrow held
     RUN --> WALK: Shift up with arrow held
     WALK --> IDLE: no net arrow direction
-    RUN --> IDLE: no net arrow direction
-    IDLE --> SLEEP: idle >= 5 seconds
-    SLEEP --> IDLE: Space then wake rotation completes
-    SLEEP --> WALK: arrow / cancel sleep rotation
     note right of AUTO_RUN
         states/auto_run.py: class AutoRun
-        800 px/s, scale 1.5
-        Run cancellation needs no Shift
-        A repeat does not reset timer inside AutoRun
+        800 px/s, scale 1.5, maximum 5 seconds
+        Arrow cancellation needs no Shift
     end note
     note left of IDLE
-        Reset idle timer on every entry
+        Stay standing indefinitely
+        A remains available after waiting
+        No SLEEP state
     end note
