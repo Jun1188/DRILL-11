@@ -25,11 +25,19 @@ class AutoRun(State):
     def update(self, boy, dt):
         active_dt = min(dt, max(0.0, AUTO_RUN_DURATION - boy.elapsed))
         boy.animate(AUTO_RUN_FPS, active_dt)
-        boy.move(AUTO_RUN_SPEED, active_dt)
+        boy.x += boy.direction * AUTO_RUN_SPEED * active_dt
         left, right = boy.horizontal_bounds()
-        if boy.x <= left:
+        # Reflect overshoot as well, so long frames do not lose travelled distance.
+        while boy.x < left or boy.x > right:
+            if boy.x > right:
+                boy.x = 2 * right - boy.x
+                boy.direction = -1
+            elif boy.x < left:
+                boy.x = 2 * left - boy.x
+                boy.direction = 1
+        if boy.x == left:
             boy.direction = 1
-        elif boy.x >= right:
+        elif boy.x == right:
             boy.direction = -1
         boy.face_dir = boy.direction
         boy.elapsed += dt
