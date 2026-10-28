@@ -24,7 +24,8 @@ renderer.py는 이미지 그리기, grass.py는 지면, boy_game.py는 실행 �
 상수는 config.py, 실행 리소스는 assets/에 둔다.
 
 ## 실행 환경과 방법
-Python 3.13과 pico2d가 필요하다. 실행 명령: python boy_game.py.
+Python 3.13과 pico2d 1.5.1이 필요하다. 실행 명령: .\run.ps1.
+기본 python 대신 Python 3.13의 전체 경로를 사용한다. 자세한 연결 방법은 README.md를 따른다.
 이미지 경로는 각 모듈 파일 위치를 기준으로 계산한다.
 800 x 600 창, Escape 또는 창 닫기로 종료한다.
 

@@ -6,12 +6,37 @@ Idle에서 A를 누르면 5초간 빠르고 커진 소년이 자동으로 이동
 ![상태 다이어그램](docs/state-diagram.png)
 
 ## 실행
-Python 3.13과 pico2d를 사용한다. 사용자 환경에 pico2d가 없다면 먼저 설치한다.
+Python 3.13과 pico2d 1.5.1을 사용한다. 기본 `python`은 다른 버전을 가리킬 수 있다.
+현재 PC에는 Python 3.13에 pico2d가 설치되어 있으므로 추가 설치 없이 다음을 사용한다.
 
 ```powershell
-python -m pip install pico2d
-python boy_game.py
+.\run.ps1
 ```
+
+PowerShell 실행 정책으로 스크립트 실행이 막히면 같은 인터프리터를 직접 호출한다.
+
+```powershell
+& "$env:LOCALAPPDATA\Programs\Python\Python313\python.exe" .\boy_game.py
+```
+
+새 PC에서만, 사용할 인터프리터를 지정해 의존성을 설치한다.
+
+```powershell
+& "$env:LOCALAPPDATA\Programs\Python\Python313\python.exe" -m pip install -r requirements.txt
+```
+
+다른 위치의 Python 3.13을 사용하면 `run.ps1 -PythonPath '실제 python.exe 경로'`로 지정한다.
+
+### VS Code 연결
+현재 PC의 상위 프로젝트, 바깥 drill-11 폴더, 실제 저장소 폴더에 로컬 `.vscode` 설정을 추가했다.
+기본 인터프리터, Code Runner, 새 터미널 PATH는 Python 3.13을 사용한다.
+F5 또는 Ctrl+F5에서는 **Drill 11: Python 3.13 (pico2d)** 구성을 선택한다.
+이 구성은 디버거의 Python 경로도 직접 지정하므로 기존 인터프리터 선택 캐시와 무관하다.
+기존 터미널은 닫고 새로 연다. 필요하면 `Developer: Reload Window`로 창을 다시 로드한다.
+Python 확장의 Run Python File이 이전 선택을 계속 쓰면 `Python: Select Interpreter`에서
+`%LOCALAPPDATA%\Programs\Python\Python313\python.exe`를 한 번 선택한다.
+VS Code는 기존 선택이 있으면 defaultInterpreterPath 변경만으로 그 선택을 바꾸지 않을 수 있다.
+`.vscode`는 PC별 절대 경로를 담아 Git에서 제외한다. 새 PC에서는 해당 PC의 인터프리터를 선택한다.
 
 이 저장소 폴더에서 실행한다. 이미지 경로는 파일 위치 기준이므로
 다른 작업 폴더에서도 boy_game.py의 전체 경로로 실행할 수 있다.

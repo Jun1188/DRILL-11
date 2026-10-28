@@ -5,7 +5,8 @@
 ## 실행 전
 - [ ] Python 환경에 pico2d가 설치되어 있다.
 - [ ] assets/에 animation_sheet.png, run_animation.png, grass.png가 있다.
-- [ ] python boy_game.py로 800 x 600 창이 열린다.
+- [ ] .\run.ps1 또는 VS Code의 Drill 11: Python 3.13 (pico2d) 구성으로 800 x 600 창이 열린다.
+- [ ] VS Code의 인터프리터가 Python 3.13이며, 기존 터미널을 닫고 새로 열었다.
 
 ## 채점 요구사항
 | 확인 | 절차 | 기대 결과 |
