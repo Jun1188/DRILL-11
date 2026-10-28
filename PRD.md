@@ -33,3 +33,27 @@ Python 3.13과 pico2d가 필요하다. 실행 명령: python boy_game.py.
 Publish는 사용자 담당이며 Public 설정, 코드/이미지/문서/커밋 원격 존재를 확인한다.
 Discord 공지의 양식과 마감 시각을 확인한 뒤 e-Class에 제출한다.
 로컬 작성과 원격 업로드, e-Class 제출 상태는 별도로 기록한다.
+
+## 상태 다이어그램
+![상태 다이어그램](docs/state-diagram.png)
+
+원본: docs/state-diagram.mmd. PNG 재생성: tools/draw_state_diagram.ps1.
+PNG는 실제 실행 화면 캡처가 아니라 상태 전이를 그린 제출용 이미지다.
+
+## 최종 모듈과 데이터 흐름
+boy_game.py → Boy.handle_event → InputState → 현재 상태.handle_event.
+매 프레임 Boy.update(dt) → 현재 상태.update → BoyRenderer.draw.
+Idle, Walk, Run, Sleep, AutoRun은 states/의 각 파일에 독립 클래스로 둔다.
+기존 transitions 의존성은 작은 상태 인터페이스로 대체한다.
+AutoRun 진입에서 타이머/입력을 초기화하고 배율을 1.5로 설정한다.
+종료 훅에서 배율을 복구한다. 이동 시간은 최대 잔여 시간만 사용하고,
+경계 초과 거리를 반사하여 긴 프레임에서도 양끝 반전을 처리한다.
+좌우 경계는 확대된 100px 프레임의 반폭을 포함한다.
+기상/확대 시 지면 보정은 기존 실습의 불투명 몸체 기준 36px을 재사용한다.
+최종 표시 위치의 적절성은 사용자 실행으로 확인해야 한다.
+
+## 사용자 수용 절차
+[USER-CHECKS.md](docs/USER-CHECKS.md)의 항목은 모두 미실행 상태다.
+문서와 코드 작성, 로컬 커밋은 동작 시험 통과를 의미하지 않는다.
+실행·시각·종료 동작, GitHub 원격 존재와 Public 설정, e-Class 제출은
+사용자가 각각 확인한다. Discord 세부 규정과 제출 마감은 아직 미확인이다.
