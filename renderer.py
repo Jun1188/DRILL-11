@@ -26,6 +26,8 @@ class BoyRenderer:
                                       FRAME_SIZE, FRAME_SIZE, boy.x, boy.y)
         else:
             flip = '' if boy.face_dir == 1 else 'h'
+            size = FRAME_SIZE * boy.scale
+            draw_y = boy.y + 36 * (boy.scale - 1.0)
             self.run_image.clip_composite_draw(
                 int(boy.frame) * FRAME_SIZE, 0, FRAME_SIZE, FRAME_SIZE,
-                0, flip, boy.x, boy.y, FRAME_SIZE, FRAME_SIZE)
+                0, flip, boy.x, draw_y, size, size)

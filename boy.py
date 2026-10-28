@@ -42,7 +42,7 @@ class Boy:
         self.frame = (self.frame + fps * dt) % FRAME_COUNT
 
     def horizontal_bounds(self):
-        half_width = FRAME_SIZE / 2
+        half_width = FRAME_SIZE * self.scale / 2
         return half_width, CANVAS_WIDTH - half_width
 
     def move(self, speed, dt):
